@@ -15,8 +15,16 @@ Five classes of sentiment level, which are represented by 0 to 4 in the code, re
 
 * 测试结果可以用confusion matrix的heatmap来展示
 
+![Cost function and softmax regression](images/softmax.png)
+
+对于自然语言处理，C个word，每个word vector的维度是d。W.x是线性函数的矩阵形式。
+
 ## 2. K nearest neighbor by EMD of word vectors
 
 类似[topic-classifier](https://github.com/mediaProduct2017/topic-classifier)
 
 这种方法保留了一些word vector和词频的信息，但还是丢掉了词汇排列的信息。
+
+## 3. Simple single word classification
+
+![word sentiment classification](images/sentiment.png)
