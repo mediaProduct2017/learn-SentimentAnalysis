@@ -11,7 +11,7 @@ Five classes of sentiment level, which are represented by 0 to 4 in the code, re
 
 * To avoid overfitting to the training examples and generalizing poorly to unseen examples, introduce regularization when doing classification (in fact, most machine learning tasks).
 
-* There word vectors work better: higher dimensional word vectors may encode more information, vectors that were trained on a much larger corpus
+* These word vectors work better: higher dimensional word vectors may encode more information, vectors that were trained on a much larger corpus
 
 * 测试结果可以用confusion matrix的heatmap来展示
 
