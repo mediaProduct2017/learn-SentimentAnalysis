@@ -37,15 +37,17 @@ x本质上是一个set（一个集合，哪怕表面是用list表示的），x�
 
 ![word sentiment classification](images/sentiment.png)
 
-## 4. Sentence classification and text classification
+## 4. window classification, sentence classification and text classification
 
 Simple single word classification在实际中很少使用，实用的最简单的情况是[word window classification](https://github.com/mediaProduct2017/learn-WordWindow)
 
-对于sentence classification，deep learning非常有效，虽然计算量大，但因为句子中词汇少，所以有实用价值。
+对于word window classification，除了一般的machine learning，deep learning非常有效，因为window中的词汇个数非常有限，所以计算量不大，非常适合deep learning发挥作用。deep learning不仅能抓住哪些词汇经常一起出现的信息，某些deep learning还能抓住经常一起出现的词汇哪个在前哪个在后的信息。
+
+对于sentence classification，deep learning也比较有效，虽然计算量大，但因为句子中词汇少，所以有实用价值。
 某些deep learning不仅能抓住词汇的信息，而且能抓住词汇的排列信息。
 
 * Recurrent Neural Networks
-* Advanced recurrent LSTMs and GRUs
+    * Advanced recurrent LSTMs and GRUs
 * Convolutional Neural Networks
 * Tree Recursive Neural Networks 
 * Dynamic Neural Networks
