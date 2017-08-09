@@ -52,7 +52,7 @@ Simple single word classification在实际中很少使用，实用的最简单�
 * Tree Recursive Neural Networks 
 * Dynamic Neural Networks
 
-对于text classification，因为词汇量太大，用deep learning虽然能抓住词汇的排列信息，但计算量大到失去实用价值。如果选取合适的词汇（比如根据词频，或者根据词汇出现的位置-每段开头选几个），词汇量可以减小，但是，这样的话，文本中词汇的排列信息就被打乱了，deep learning擅长抓取文本中词汇排列顺序的优势就没法发挥，只能使用basic neural nets，或者softmax classifier，或者K nearest neighbor等方法。
+对于text classification，因为词汇量太大，用deep learning虽然能抓住词汇的排列信息（理论上，CNN、RecurrentNN、TreeRNN都是可用的，但计算量太大，失去了实用价值），但计算量大到失去实用价值。如果选取合适的词汇（比如根据词频，或者根据词汇出现的位置-每段开头选几个），词汇量可以减小，但是，这样的话，文本中词汇的排列信息就被打乱了，deep learning擅长抓取文本中词汇排列顺序的优势就没法发挥，只能使用basic neural nets，或者softmax classifier，或者K nearest neighbor等方法。
 
 ## 5. Concrete applications
 
