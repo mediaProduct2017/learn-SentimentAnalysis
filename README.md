@@ -3,7 +3,9 @@
 Five classes of sentiment level, which are represented by 0 to 4 in the code, respectively:
 “very negative (−−)”, “negative (−)”, “neutral”, “positive (+)”, “very positive (++)”
 
-## 1. Train a softmax classifier with the word vectors
+Sentiment analysis是文本分类问题的代表，不仅代表了情感分析本身，对实体识别、主题分类等众多自然语言处理中的分类问题都有启示作用。
+
+## 1. Train a softmax classifier or a neural network with the word vectors
 
 * 可以只使用出现频率较高的word(比如top10)，需要训练的是word vector前面的系数，以及截距（在softmax classifier中使用线性函数）。这种方法保留了一些word vector的信息，但丢掉了词频的信息，也丢掉了词汇排列的信息。
 
@@ -11,7 +13,7 @@ Five classes of sentiment level, which are represented by 0 to 4 in the code, re
 
 * 如果word vector用的是固定的值，就只有系数W(:)需要拟合，总的维度是Cd，C是类别的个数，d是feature（word vector）的个数，这与一般的机器学习的数据拟合是类似的。如果word vector也需要拟合，需要拟合的变量的总的维度就是Cd+Vd（总维度极高，很容易过拟合），C是类别的个数，V是word vector的维度，d是word vector的个数。If you only have a small training data set, don’t train the word vectors. If you have have a very large dataset, it may work beZer to train word vectors to the task.
 
-* A simple way of representing a sentence is taking the average of the vectors of the words in the sentence. 然后训练这个word vector前面的系数，以及截距（在softmax classifier中使用线性函数）。Averaging word vectors destroys word vectors and word order, and doesn’t handle negation.
+* A simple way of representing a sentence is taking the average of the vectors of the words in the sentence. 然后训练这个average word vector前面的系数，以及截距（在softmax classifier中使用线性函数）。Averaging word vectors destroys word vectors and word order, and doesn’t handle negation.
 
 * To avoid overfitting to the training examples and generalizing poorly to unseen examples, introduce regularization when doing classification (in fact, most machine learning tasks). Regularization目标是使每个系数都很小，从而使得预测的函数曲线很平滑，提高test的准确度。在拟合过程中，常出现的问题就是过拟合，也就是参数的增加等使得training error不断减小，但到了一定程度，test error反而不断增加，这意味着出现了过拟合，模型的预测能力相当有限。
 
@@ -43,10 +45,11 @@ word vector可以认为是用deep learning的办法得到的，整体上用的�
 
 Simple single word classification在实际中很少使用，实用的最简单的情况是[word window classification](https://github.com/mediaProduct2017/learn-WordWindow)
 
-对于word window classification，除了一般的machine learning，deep learning非常有效，因为window中的词汇个数非常有限，所以计算量不大，非常适合deep learning发挥作用。deep learning不仅能抓住哪些词汇经常一起出现的信息，某些deep learning还能抓住经常一起出现的词汇哪个在前哪个在后的信息。
+对于word window classification，除了一般的machine learning，deep learning非常有效，因为window中的词汇个数非常有限，所以计算量不大，非常适合deep learning发挥作用。deep learning不仅能抓住哪些词汇经常一起出现的信息，某些deep learning还能抓住经常一起出现的词汇哪个在前哪个在后的信息（比如CNN和RNN）。word window classification的特点是，用到的word window的大小是固定的，因此，模型用到的word vector的个数也是固定的。
 
 对于sentence classification，deep learning也比较有效，虽然计算量大，但因为句子中词汇少，所以有实用价值。
 某些deep learning不仅能抓住词汇的信息，而且能抓住词汇的排列信息。
+一个句子中，词的个数是不固定的，所以模型用到的word vector的个数也是不固定的，为了固定模型中word vector的个数，可以只选择出现词频最高的top10或者top5.
 
 * Recurrent Neural Networks
     * Advanced recurrent LSTMs and GRUs
@@ -84,3 +87,42 @@ Simple single word classification在实际中很少使用，实用的最简单�
 
 * 根据其他媒体的文章，模仿或者总结新的文章，可以尝试RecurrentNN
 
+## 6. useful classes and functions
+
+Counter class from collections：
+- Counter can be treated like a dict
+- Counter has the method most_common()
+
+分词：英文里常用split(' ')来分词，中文可以用结巴分词这个python库
+
+## 7. 词频和positive negative ratio
+
+在sentiment analysis中，有预测力的是词汇（不是字母，也不是整个句子），但不是所有的词汇，一般是词频高的词汇（词频低的话并不能表明pattern，更多是一种偶然性），并且要求positive negative ratio要比较大或者比较小（远离1）。这可以作为input的feature selection的一种方法。
+
+词频可以用Counter中的most_common()来统计
+
+positive negative ratio是针对同一个词，在positive环境下出现的词频/(1+在negative环境下出现的词频）。之所以加1，是为了防止在negative环境下出现的词频为0. positive negative ratio的结果也可以储存在一个Counter class中。
+
+对于多个类别来说，不存在简单的positive negative ratio，但是，对每一个类别，把该类当做positive，把其他类当做negative，都存在一个positive negative ratio。
+
+为了比较positive与negative的程度，可以把positive negative ratio取log，这样的话，正值就表示偏positive，负值就表示偏negative.
+
+在positive negative ratio这个Counter中，大量的很正的正值和很负的负值说明，有很多词对于positive和negative是很有预测力的。
+
+## 8. one hot for word and several hots for sentence
+
+可以在一个dict中标记出各个词的位置代码，这样，在一个很长的代表词汇整体的向量中，一个词会使其中一个坐标变成1。
+
+对于一个句子，也可以用这个代表词汇整体的向量来表示，不出现某个词的话，在该词的坐标位置上就是0，出现某个词的话，在该词的坐标位置上可以用该词出现的次数，也可以就用1，表示该词在句子中出现了。
+
+## 9. neural noise
+
+句子的sentiment analysis过程中，如果featured word是精心选择过的，那么该词出现的次数用在input layer中是能提供额外的有用信息的，但是，如果featured word并没有挑选的很完美，这种情况下把该词出现的次数用在input layer中反而增加了输入的noise（主要原因是，一些无关紧要的词的出现次数极大的增加了noise），不如直接用0或者1表示该词是否出现在句子中。也有可能是neural network本身的问题，没法在模型中有效的处理词汇出现次数这个信息，某些无关紧要的词的词汇出现次数对模型的影响太大，导致在neural network中，没法很好的加入词汇出现次数这个信息。在实际的neural network的建模中，因为featured word往往并不是很完美，所以，直接用0、1而不是词汇出现次数反而效果更好（词汇出现次数增加了信号，也增加了噪音，在neural network这样的结构下，对噪音的增加影响更大）。
+
+任何一种数学模型都有它擅长过滤的noise，也有它不擅长过滤的noise. 总的来说，Neural network比其他机器学习模型更加擅长过滤noise，但是，对于某些特定类型的noise，neural net并不擅长过滤，比如上面提到的某些无关紧要的词汇的出现次数这种noise，neural net并没有办法很好的过滤掉。
+
+## 10. Use weights to analyze and cluster the input words
+
+某个词的weights可以用来表征这个词的意义，如果有多个hidden layer，就是一个高维向量，可以有某种方法降维之后画在二维图上，就可以看到某些意义相近的词聚在一起，用来表征positive或者negative的意义。
+
+对于读者爱读的生物医药新闻（阅读量高就是positive），通过上面的处理后，就可以看到，在不同时期，那些词较高频的出现在高阅读量文章中（不出现在低阅读量文章中），可以分析这些词的变化，也可以这些词cluster的情况，分为几个主要类别。可以掌握这些特征词，并且根据这些特征词来预测阅读量的高低，高阅读量意味着其中大量包含了这些当前最火的特征词，如果与这些特征词相关的广告出现在这些高阅读量文章的页面上，广告效果会非常好。
