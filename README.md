@@ -87,6 +87,8 @@ Simple single word classification在实际中很少使用，实用的最简单�
 
 * 根据其他媒体的文章，模仿或者总结新的文章，可以尝试RecurrentNN
 
+* 英文垂直领域资讯的自动推荐：根据资讯全文进行的推荐（topic classification）；根据资讯标题进行的推荐（deep learning）
+
 ## 6. useful classes and functions
 
 Counter class from collections：
