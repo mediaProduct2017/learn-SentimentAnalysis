@@ -87,7 +87,9 @@ Simple single word classification在实际中很少使用，实用的最简单�
 
 * 根据其他媒体的文章，模仿或者总结新的文章，可以尝试RecurrentNN
 
-* 英文垂直领域资讯的自动推荐：根据资讯全文进行的推荐（topic classification）；根据资讯标题进行的推荐（deep learning）
+* 英文（或中文）垂直领域资讯（控制变量，暂时不需要程序学习哪个领域更热门，因为肯定是财经、社会等领域更热门）的自动推荐：根据资讯全文进行的推荐（topic classification）；根据资讯标题进行的推荐（deep learning, 比如CNN, RNN）
+
+* 机器学习与深度学习，众筹（非专家，兼职）与rule based model，专家知识与伪专家知识（其实用众筹或者程序就能解决）：有了rule-based model, 就可以把专家才能做的事情交给一般人或者程序来做；但是，除了rule-based model，还有其他办法来让程序做事，就是机器学习与深度学习
 
 ## 6. useful classes and functions
 
