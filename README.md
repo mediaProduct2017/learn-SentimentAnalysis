@@ -91,6 +91,8 @@ Simple single word classification在实际中很少使用，实用的最简单�
 
 * 机器学习与深度学习，众筹（非专家，兼职）与rule based model，专家知识与伪专家知识（其实用众筹或者程序就能解决）：有了rule-based model, 就可以把专家才能做的事情交给一般人或者程序来做；但是，除了rule-based model，还有其他办法来让程序做事，就是机器学习与深度学习
 
+* 生物论文分成具体类别（分子、细胞、基因编辑、生物信息等），根据论文题目，或者根据摘要（摘要全文）；建立一个网站，对好杂志的生物医学论文进行展示，并为用户做个性化推荐；从生物医学论文扩展到全部科技论文
+
 ## 6. useful classes and functions
 
 Counter class from collections：
