@@ -93,6 +93,8 @@ Simple single word classification在实际中很少使用，实用的最简单�
 
 * 生物论文分成具体类别（分子、细胞、基因编辑、生物信息等），根据论文题目，或者根据摘要（摘要全文）；建立一个网站，对好杂志的生物医学论文进行展示，并为用户做个性化推荐；从生物医学论文扩展到全部科技论文
 
+* 用“即刻+今日头条”的技术，实现一个女性阅读社区（像果壳网一样实现内容运营向平台的转变）
+
 ## 6. useful classes and functions
 
 Counter class from collections：
