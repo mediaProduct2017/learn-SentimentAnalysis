@@ -97,6 +97,10 @@ Simple single word classification在实际中很少使用，实用的最简单�
 
 * 生物标志物的question answering system, 也就是chat bot；比如，用生物医学论文的摘要来训练
 
+* 上海、合肥、全国的房地产数据放在一个app里，或者再放在免费的herohu里
+
+* 股票分红数据及整理放在一个app里，或者再放在免费的herohu里
+
 ## 6. useful classes and functions
 
 Counter class from collections：
