@@ -115,13 +115,25 @@ Counter class from collections：
 
 词频可以用Counter中的most_common()来统计
 
-positive negative ratio是针对同一个词，在positive环境下出现的词频/(1+在negative环境下出现的词频）。之所以加1，是为了防止在negative环境下出现的词频为0. positive negative ratio的结果也可以储存在一个Counter class中。
+positive negative ratio是针对同一个词，在positive环境下出现的词频/(1+在negative环境下出现的词频）。之所以加1，是为了防止在negative环境下出现的词频为0. positive negative ratio的结果也可以储存在一个Counter class中。同理，也可以算negative positive ratio.
 
 对于多个类别来说，不存在简单的positive negative ratio，但是，对每一个类别，把该类当做positive，把其他类当做negative，都存在一个positive negative ratio。
 
 为了比较positive与negative的程度，可以把positive negative ratio取log，这样的话，正值就表示偏positive，负值就表示偏negative.
 
 在positive negative ratio这个Counter中，大量的很正的正值和很负的负值说明，有很多词对于positive和negative是很有预测力的。
+
+如果不止两个类别，分母并不用该词在negative下的词频，而是该词在所有document中的词频。这种情况下，其实和tf-idf测度是类似的。
+
+tf-idf的term frequency与inverse document frequency是相乘的关系。
+
+term frequency最常用的公式是0.5+0.5*该文档下该词的频数/该文档下频率最高词的频数，也可以简单用该文档下该词的频率。
+
+idf最常用的公式是log(总的文档数/出现该词的文档数)。
+
+[tf-idf wikipedia](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
+
+可以利用tf-idf来给文章提取关键词，其中各个词中tf-idf值最大的几个词被作为该文章的关键词。
 
 ## 8. one hot for word and several hots for sentence
 
