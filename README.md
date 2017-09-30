@@ -101,6 +101,12 @@ Simple single word classification在实际中很少使用，实用的最简单�
 
 * 股票分红数据及整理放在一个app里，或者再放在免费的herohu里
 
+* 类似欧神文章的不过时的文章库，放在一个网站里，蹭热点把老文章不断贴出来
+
+* 资讯文章的蹭热点打分工具（发布在网站上是否同意，存入数据库中），论文的热点筛选工具（看当前某个领域的研究热点是什么）
+
+* 大数据与人工智能的营销工具，看当前某个领域的舆论关注的热点是什么，相关的文章是否蹭到了热点
+
 ## 6. useful classes and functions
 
 Counter class from collections：
